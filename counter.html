@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/redux/4.0.5/redux.min.js"></script>
+    <!-- Day Assignment
+        --------------------------
+        Counter
+        Initial Counter: 0
+        Add - action counter
+        increment counter inside of the global state
+        Subtract - action creator
+        decrement counter inside the global state by one
+        -------------------------------------------------- -->
+    <script>
+        
+        function addCounter() {
+            return{
+                type: "ADD",
+
+            }
+        }
+                
+
+        function decrementCounter() {
+            return{
+                type : "SUBTRACT"
+            }
+        }
+        let initialState = {
+            count : 0
+        }
+        
+        function reducer(state, action){
+            if(state === undefined){
+                state = initialState
+            }
+            
+            if(action.type === "ADD"){
+
+                return{ 
+                    ...state, count : state.count + 1
+                }
+            }
+            else if(action.type === "SUBTRACT"){
+
+                return{
+
+                ...state,
+                count :  state.count - 1
+                }
+                
+            }
+        }
+        //REDUCER GOES IN THE STORE 
+        let store = Redux.createStore(reducer);
+        //WE ADD THE NEXT CODE TO SEE IT IN THE TERMINAL
+        store.subscribe(showState);
+
+        function showState() {
+            console.log(store.getState())
+        }
+        //WE SEND AN ACTION CHANGE TO CHANGE THE INITIAL STATE 
+        store.dispatch(addCounter())
+        store.dispatch(addCounter())
+        
+        
+    </script>
+
+
+
+</body>
+</html>
